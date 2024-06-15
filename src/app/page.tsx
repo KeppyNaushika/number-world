@@ -27,8 +27,8 @@ import Rational2 from "./stories/RationalNumbers/Rational2"
 
 import Epilogue0 from "./stories/Epilogue/Epilogue0"
 import Epilogue1 from "./stories/Epilogue/Epilogue1"
-import Epilogue2 from "./stories/Epilogue/Epilogue3"
-import Epilogue3 from "./stories/Epilogue/Epilogue2"
+import Epilogue2 from "./stories/Epilogue/Epilogue2"
+import Epilogue3 from "./stories/Epilogue/Epilogue3"
 import Epilogue4 from "./stories/Epilogue/Epilogue4"
 
 interface Story {
