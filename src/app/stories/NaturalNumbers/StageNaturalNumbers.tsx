@@ -23,7 +23,11 @@ const calcName = {
   "÷": "除法",
 }
 
-const StageNaturalNumbers = () => {
+const StageNaturalNumbers = (props: {
+  setStep: React.Dispatch<React.SetStateAction<string>>
+}) => {
+  const { setStep } = props
+
   const [inputValue1, setInputValue1] = useState("")
   const [inputValue2, setInputValue2] = useState("")
   const [inputValue3, setInputValue3] = useState("")
@@ -32,6 +36,7 @@ const StageNaturalNumbers = () => {
   )
   const [showAnswer, setShowAnswer] = useState(false)
   const [count, setCount] = useState<number | null>(null)
+  const [showCheckDialog, setShowCheckDialog] = useState(true)
 
   const math = create(all)
 
@@ -92,6 +97,7 @@ const StageNaturalNumbers = () => {
 
   return (
     <div className="flex size-full flex-col items-center justify-center rounded-2xl bg-sky-100 px-4 py-8">
+      {showCheckDialog && <div className="absolute"></div>}
       <div className="text-lg text-black">
         自然数の王国で使える計算マシーンはどれだろう
       </div>
@@ -163,7 +169,13 @@ const StageNaturalNumbers = () => {
           計算する
         </button>
       </div>
-      <div className="flex">
+      <div className="flex items-center">
+        <div
+          className="mx-8 cursor-pointer select-none rounded-2xl bg-white/95 px-8 py-2 text-black transition-colors duration-200 ease-in-out hover:bg-white"
+          onClick={() => setStep("Natural4")}
+        >
+          戻る
+        </div>
         <div className="flex flex-col">
           <div className="py-2 text-xs text-slate-500">
             答えが必ず自然数になる、使って良い計算マシーン　→　理由を説明する
@@ -171,6 +183,14 @@ const StageNaturalNumbers = () => {
           <div className="py-2 text-xs text-slate-500">
             答えが自然数にならないことがある、使ってはいけない計算マシーン　→　反例を示す
           </div>
+        </div>
+        <div
+          className="mx-8 cursor-pointer select-none rounded-2xl bg-white/95 px-8 py-2 text-black transition-colors duration-200 ease-in-out hover:bg-white"
+          onClick={() => {
+            setShowCheckDialog(true)
+          }}
+        >
+          チェック
         </div>
       </div>
     </div>

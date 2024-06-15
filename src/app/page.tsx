@@ -14,6 +14,7 @@ import Natural4 from "./stories/NaturalNumbers/Natural4"
 import Natural5 from "./stories/NaturalNumbers/Natural5"
 
 import StageNaturalNumbers from "./stories/NaturalNumbers/StageNaturalNumbers"
+import Settings from "./components/Settings"
 
 interface Story {
   step: string
@@ -69,59 +70,6 @@ const stories: Story[] = [
   },
 ]
 
-const Settings = (props: {
-  setShowSettings: React.Dispatch<React.SetStateAction<boolean>>
-}) => {
-  const [password, setPassword] = useState("")
-  console.log(password === "password")
-  const { setShowSettings } = props
-
-  return (
-    <div
-      className="absolute z-50 flex size-full animate-floatInFromTop flex-col items-center justify-center bg-lime-50/95 p-12"
-      onClick={() => setShowSettings(false)}
-    >
-      <div className="py-8 text-center text-2xl text-black">王の力</div>
-      <button disabled>
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-60 p-2 text-center text-black"
-          onChange={(e) => setPassword(e.target.value)}
-          onClick={() => {}}
-        />
-      </button>
-
-      <div className="flex pt-12">
-        <button
-          className={`mx-4 w-36 rounded-lg bg-lime-100 p-4 text-center shadow-sm ${
-            password === "password" ? "text-black" : "text-black/20"
-          }`}
-          disabled={password !== "password"}
-          onClick={() => {
-            localStorage.clear()
-            window.location.reload()
-          }}
-        >
-          最初から
-        </button>
-        <button
-          className={`mx-4 w-36 rounded-lg bg-lime-100 p-4 text-center shadow-sm ${
-            password === "password" ? "text-black" : "text-black/20"
-          }`}
-          disabled={password !== "password"}
-          onClick={() => {
-            localStorage.removeItem("count")
-            window.location.reload()
-          }}
-        >
-          回数リセット
-        </button>
-      </div>
-    </div>
-  )
-}
-
 export default function Home() {
   const [step, setStep] = useState("")
   const [showSettings, setShowSettings] = useState(false)
@@ -155,6 +103,7 @@ export default function Home() {
             src={"/images/natural_numbers.png"}
             alt="Integer Numbers"
             className="absolute inset-0 size-full object-cover"
+            layout="fill"
             style={{ opacity: 0.5 }}
           />
         )}
@@ -163,6 +112,7 @@ export default function Home() {
             src={"/images/integer_numbers.png"}
             alt="Integer Numbers"
             className="absolute inset-0 size-full object-cover"
+            layout="fill"
             style={{ opacity: 0.5 }}
           />
         )}
@@ -171,6 +121,7 @@ export default function Home() {
             src={"/images/rational_numbers.png"}
             alt="Integer Numbers"
             className="absolute inset-0 size-full object-cover"
+            layout="fill"
             style={{ opacity: 0.5 }}
           />
         )}
@@ -229,7 +180,9 @@ export default function Home() {
               </div>
             </>
           )}
-          {step === "stageNaturalNumbers" && <StageNaturalNumbers />}
+          {step === "stageNaturalNumbers" && (
+            <StageNaturalNumbers setStep={setStep} />
+          )}
         </div>
       </div>
     </AspectRatioBox>
