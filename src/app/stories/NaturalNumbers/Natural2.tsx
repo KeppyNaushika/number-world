@@ -14,8 +14,10 @@ const description = [
 const Natural1 = () => {
   return (
     <div className=" animate-floatInFromTop">
-      {description.map((story) => (
-        <div className="text-center text-black py-2">{story}</div>
+      {description.map((story, index) => (
+        <div key={index} className="py-2 text-center text-black">
+          {story}
+        </div>
       ))}
     </div>
   )

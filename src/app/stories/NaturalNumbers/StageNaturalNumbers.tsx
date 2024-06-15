@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 
-import Robot_blue from "@/images/robot_blue.png"
-import Robot_green from "@/images/robot_green.png"
-import Robot_orange from "@/images/robot_orange.png"
-import Robot_purple from "@/images/robot_purple.png"
-
 import { create, all, type MathType, isFraction } from "mathjs"
 
 const calcOperators = ["+", "-", "×", "÷"] as const
@@ -15,10 +10,10 @@ type CalcOperators = (typeof calcOperators)[number]
 const math = create(all)
 
 const calcRobot = {
-  "+": Robot_blue,
-  "-": Robot_green,
-  "×": Robot_orange,
-  "÷": Robot_purple,
+  "+": "/images/robot_blue.png",
+  "-": "/images/robot_green.png",
+  "×": "/images/robot_orange.png",
+  "÷": "/images/robot_purple.png",
 }
 
 const calcName = {
@@ -76,7 +71,7 @@ const StageNaturalNumbers = () => {
       setInputValue3("ムリで〜す")
     }
   }
-  // Load step from localStorage on mount
+
   useEffect(() => {
     const savedCount = localStorage.getItem("count")
     if (savedCount === null) {
@@ -86,7 +81,6 @@ const StageNaturalNumbers = () => {
     }
   }, [])
 
-  // Save step to localStorage whenever it changes
   useEffect(() => {
     if (count === null) return
     localStorage.setItem("count", count.toString())
@@ -94,22 +88,22 @@ const StageNaturalNumbers = () => {
 
   useEffect(() => {
     setShowAnswer(false)
-    handleCalc()
-  }, [calcOperator, inputValue1, inputValue2])
+  }, [calcOperator, inputValue1, inputValue2, math])
+
   return (
-    <div className="flex flex-col items-center justify-center bg-sky-100 px-4 py-8 rounded-2xl w-full h-full">
+    <div className="flex size-full flex-col items-center justify-center rounded-2xl bg-sky-100 px-4 py-8">
       <div className="text-lg text-black">
         自然数の王国で使える計算マシーンはどれだろう
       </div>
-      <div className="flex flex-col justify-center items-center bg-sky-200 shadow-md rounded-md p-8 m-4">
-        <div className="text-slate-600 mb-6">
+      <div className="m-4 flex flex-col items-center justify-center rounded-md bg-sky-200 p-8 shadow-md">
+        <div className="mb-6 text-slate-600">
           お試し計算マシーン（残り{count}回）
         </div>
         <div className="flex">
           {calcOperators.map((calcOperator) => (
             <div
               key={calcOperator}
-              className=" bg-slate-700 shadow-md w-20 h-20 mx-2 text-center rounded-md text-white flex flex-col items-center justify-center hover:opacity-80 transition-opacity duration-200 ease-in-out cursor-pointer"
+              className=" mx-2 flex size-20 cursor-pointer flex-col items-center justify-center rounded-md bg-slate-700 text-center text-white shadow-md transition-opacity duration-200 ease-in-out hover:opacity-80"
               onClick={() => {
                 setCalcOperator(calcOperator)
               }}
@@ -121,7 +115,7 @@ const StageNaturalNumbers = () => {
                     width={32}
                     alt="Blue Robot"
                   ></Image>
-                  <div className="text-white text-xs pt-2">
+                  <div className="pt-2 text-xs text-white">
                     {calcName[calcOperator]}
                   </div>
                 </>
@@ -129,36 +123,37 @@ const StageNaturalNumbers = () => {
             </div>
           ))}
         </div>
-        <div className="flex items-center my-8">
+        <div className="my-8 flex items-center">
           <input
             type="text"
-            className="p-4 w-40 text-center text-black"
+            className="w-40 p-4 text-center text-black"
             onChange={(e) => {
               setInputValue1(e.target.value)
             }}
           />
-          <div className="px-2 text-2xl text-black w-8 text-center">
+          <div className="w-8 px-2 text-center text-2xl text-black">
             {calcOperator}
           </div>
           <input
             type="text"
-            className="p-4 w-40 text-center text-black"
+            className="w-40 p-4 text-center text-black"
             onChange={(e) => {
               setInputValue2(e.target.value)
             }}
           />
-          <div className="px-2 text-2xl text-black w-8 text-center">=</div>
+          <div className="w-8 px-2 text-center text-2xl text-black">=</div>
           <input
             type="text"
-            className="p-4 w-40 text-center text-black"
+            className="w-40 p-4 text-center text-black"
             value={showAnswer ? inputValue3 : ""}
             readOnly={true}
           />
         </div>
         <button
-          className=" bg-slate-700 shadow-md w-60 py-2 mx-2 text-center rounded-md text-white flex flex-col items-center justify-center hover:opacity-80 transition-opacity duration-200 ease-in-out cursor-pointer"
+          className=" mx-2 flex w-60 cursor-pointer flex-col items-center justify-center rounded-md bg-slate-700 py-2 text-center text-white shadow-md transition-opacity duration-200 ease-in-out hover:opacity-80"
           style={{ opacity: (count ?? 20) < 1 ? 0.5 : undefined }}
           onClick={() => {
+            handleCalc()
             setShowAnswer(true)
             setCount((prev) => (prev ?? 20) - 1)
           }}
@@ -167,10 +162,10 @@ const StageNaturalNumbers = () => {
           計算する
         </button>
       </div>
-      <div className="text-xs text-slate-500 py-2">
+      <div className="py-2 text-xs text-slate-500">
         答えが必ず自然数になる、使って良い計算マシーン　→　理由を説明する
       </div>
-      <div className="text-xs text-slate-500 py-2">
+      <div className="py-2 text-xs text-slate-500">
         答えが自然数にならないことがある、使ってはいけない計算マシーン　→　反例を示す
       </div>
     </div>

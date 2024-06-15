@@ -13,9 +13,6 @@ import Natural3 from "./stories/NaturalNumbers/Natural3"
 import Natural4 from "./stories/NaturalNumbers/Natural4"
 import Natural5 from "./stories/NaturalNumbers/Natural5"
 
-import NaturalNumberes from "@/images/natural_numbers.png"
-import IntergerNumbers from "@/images/integer_numbers.png"
-import RationalNumbers from "@/images/rational_numbers.png"
 import StageNaturalNumbers from "./stories/NaturalNumbers/StageNaturalNumbers"
 
 interface Story {
@@ -81,10 +78,10 @@ const Settings = (props: {
 
   return (
     <div
-      className="absolute animate-floatInFromTop w-full h-full bg-lime-50/95 flex flex-col p-12 items-center justify-center z-50"
+      className="absolute z-50 flex size-full animate-floatInFromTop flex-col items-center justify-center bg-lime-50/95 p-12"
       onClick={() => setShowSettings(false)}
     >
-      <div className="text-center text-black text-2xl py-8">王の力</div>
+      <div className="py-8 text-center text-2xl text-black">王の力</div>
       <button disabled>
         <input
           type="password"
@@ -97,7 +94,7 @@ const Settings = (props: {
 
       <div className="flex pt-12">
         <button
-          className={`w-36 text-center p-4 mx-4 bg-lime-100 rounded-lg shadow-sm ${
+          className={`mx-4 w-36 rounded-lg bg-lime-100 p-4 text-center shadow-sm ${
             password === "password" ? "text-black" : "text-black/20"
           }`}
           disabled={password !== "password"}
@@ -109,7 +106,7 @@ const Settings = (props: {
           最初から
         </button>
         <button
-          className={`w-36 text-center p-4 mx-4 bg-lime-100 rounded-lg shadow-sm ${
+          className={`mx-4 w-36 rounded-lg bg-lime-100 p-4 text-center shadow-sm ${
             password === "password" ? "text-black" : "text-black/20"
           }`}
           disabled={password !== "password"}
@@ -151,35 +148,35 @@ export default function Home() {
 
   return (
     <AspectRatioBox>
-      <div className="bg-gray-200 text-white flex flex-col items-center justify-center h-full">
+      <div className="flex h-full flex-col items-center justify-center bg-gray-200 text-white">
         {showSettings && <Settings setShowSettings={setShowSettings} />}
         {step.startsWith("Natural") && (
           <Image
-            src={NaturalNumberes}
+            src={"/images/natural_numbers.png"}
             alt="Integer Numbers"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 size-full object-cover"
             style={{ opacity: 0.5 }}
           />
         )}
         {step.startsWith("Integer") && (
           <Image
-            src={IntergerNumbers}
+            src={"/images/integer_numbers.png"}
             alt="Integer Numbers"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 size-full object-cover"
             style={{ opacity: 0.5 }}
           />
         )}
         {step.startsWith("Rational") && (
           <Image
-            src={RationalNumbers}
+            src={"/images/rational_numbers.png"}
             alt="Integer Numbers"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 size-full object-cover"
             style={{ opacity: 0.5 }}
           />
         )}
-        <div className="flex flex-col w-full h-full z-10">
+        <div className="z-10 flex size-full flex-col">
           <div
-            className="absolute text-slate-50 text-xs p-2 select-none cursor-pointer rounded-md"
+            className="absolute cursor-pointer select-none rounded-md p-2 text-xs text-slate-50"
             onClick={handleSettingBtnClick}
           >
             <MdSettings size={24} />
@@ -190,13 +187,13 @@ export default function Home() {
             step.startsWith("Integer") ||
             step.startsWith("Rational")) && (
             <>
-              <div className="flex justify-around h-1/6"></div>
-              <div className="flex flex-col justify-center content-center h-2/3 bg-white/95 mx-12 rounded-2xl">
+              <div className="flex h-1/6 justify-around"></div>
+              <div className="mx-12 flex h-2/3 flex-col content-center justify-center rounded-2xl bg-white/95">
                 {stories.find((story) => story.step === step)?.component}
               </div>
-              <div className="flex justify-around h-1/6 items-center">
+              <div className="flex h-1/6 items-center justify-around">
                 <div
-                  className="text-black select-none cursor-pointer px-8 py-2 transition-colors duration-200 ease-in-out rounded-2xl bg-white/95 hover:bg-white"
+                  className="cursor-pointer select-none rounded-2xl bg-white/95 px-8 py-2 text-black transition-colors duration-200 ease-in-out hover:bg-white"
                   style={{
                     opacity: stories.find((story) => story.step === step)
                       ?.backStep
@@ -213,7 +210,7 @@ export default function Home() {
                   戻る
                 </div>
                 <div
-                  className="text-black select-none cursor-pointer px-8 py-2 transition-colors duration-200 ease-in-out rounded-2xl bg-white/95 hover:bg-white"
+                  className="cursor-pointer select-none rounded-2xl bg-white/95 px-8 py-2 text-black transition-colors duration-200 ease-in-out hover:bg-white"
                   style={{
                     opacity: stories.find((story) => story.step === step)
                       ?.nextStep

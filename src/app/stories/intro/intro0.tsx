@@ -9,11 +9,13 @@ const description = [
 const intro0 = () => {
   return (
     <div className=" animate-floatInFromTop">
-      <div className="text-3xl text-black pb-12 text-center">
+      <div className="pb-12 text-center text-3xl text-black">
         数の国の冒険者：勇者たちの挑戦
       </div>
-      {description.map((story) => (
-        <div className="text-center text-black py-2">{story}</div>
+      {description.map((story, index) => (
+        <div key={index} className="py-2 text-center text-black">
+          {story}
+        </div>
       ))}
     </div>
   )

@@ -2,11 +2,6 @@ import React from "react"
 
 import Image from "next/image"
 
-import BlueRobot from "@/images/robot_blue.png"
-import GreenRobot from "@/images/robot_green.png"
-import OrangeRobot from "@/images/robot_orange.png"
-import PurpleRobot from "@/images/robot_purple.png"
-
 const description = [
   "私たちが召喚されたのは、自然数の王国で、王様から重大な使命を受けました。",
   "",
@@ -21,36 +16,38 @@ const Natural0 = () => {
     <div className=" animate-floatInFromTop">
       <div className="flex justify-center pb-4">
         <Image
-          src={BlueRobot}
+          src={"/images/robot_blue.png"}
           alt="Blue Robot"
           width={50}
           height={50}
           className="mx-8"
         />
         <Image
-          src={GreenRobot}
+          src={"/images/robot_green.png"}
           alt="Green Robot"
           width={50}
           height={50}
           className="mx-8"
         />
         <Image
-          src={OrangeRobot}
+          src={"/images/robot_orange.png"}
           alt="Orange Robot"
           width={50}
           height={50}
           className="mx-8"
         />
         <Image
-          src={PurpleRobot}
+          src={"/images/robot_purple.png"}
           alt="Purple Robot"
           width={50}
           height={50}
           className="mx-8"
         />
       </div>
-      {description.map((story) => (
-        <div className="text-center text-black py-2">{story}</div>
+      {description.map((story, index) => (
+        <div key={index} className="py-2 text-center text-black">
+          {story}
+        </div>
       ))}
     </div>
   )

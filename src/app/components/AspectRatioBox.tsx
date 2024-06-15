@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef, useState } from "react"
 
 const AspectRatioBox = ({
@@ -32,10 +33,10 @@ const AspectRatioBox = ({
   }, [])
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-gray-100">
+    <div className="flex h-screen w-screen items-center justify-center bg-gray-100">
       <div
         ref={containerRef}
-        className="w-full h-full flex items-center justify-center"
+        className="flex size-full items-center justify-center"
         style={{
           overflow: "hidden",
           maxWidth: "100vw",
