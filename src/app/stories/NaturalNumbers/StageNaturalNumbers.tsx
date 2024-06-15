@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import Image from "next/image"
 
 import { create, all, type MathType, isFraction } from "mathjs"
@@ -35,7 +35,7 @@ const StageNaturalNumbers = () => {
 
   const math = create(all)
 
-  const handleCalc = () => {
+  const handleCalc = useCallback(() => {
     try {
       const value1 = math.fraction(inputValue1)
       const value2 = math.fraction(inputValue2)
@@ -59,7 +59,7 @@ const StageNaturalNumbers = () => {
           }
           break
       }
-      console.log(result)
+
       if (typeof result === "string") {
         setInputValue3(result)
       } else if (isFraction(result) && result.d === 1) {
@@ -70,7 +70,7 @@ const StageNaturalNumbers = () => {
     } catch (error) {
       setInputValue3("ムリで〜す")
     }
-  }
+  }, [inputValue1, inputValue2, calcOperator, math])
 
   useEffect(() => {
     const savedCount = localStorage.getItem("count")
@@ -88,7 +88,7 @@ const StageNaturalNumbers = () => {
 
   useEffect(() => {
     setShowAnswer(false)
-  }, [calcOperator, inputValue1, inputValue2, math])
+  }, [calcOperator, inputValue1, inputValue2])
 
   return (
     <div className="flex size-full flex-col items-center justify-center rounded-2xl bg-sky-100 px-4 py-8">
@@ -113,6 +113,7 @@ const StageNaturalNumbers = () => {
                   <Image
                     src={calcRobot[calcOperator]}
                     width={32}
+                    height={32}
                     alt="Blue Robot"
                   ></Image>
                   <div className="pt-2 text-xs text-white">
@@ -162,11 +163,15 @@ const StageNaturalNumbers = () => {
           計算する
         </button>
       </div>
-      <div className="py-2 text-xs text-slate-500">
-        答えが必ず自然数になる、使って良い計算マシーン　→　理由を説明する
-      </div>
-      <div className="py-2 text-xs text-slate-500">
-        答えが自然数にならないことがある、使ってはいけない計算マシーン　→　反例を示す
+      <div className="flex">
+        <div className="flex flex-col">
+          <div className="py-2 text-xs text-slate-500">
+            答えが必ず自然数になる、使って良い計算マシーン　→　理由を説明する
+          </div>
+          <div className="py-2 text-xs text-slate-500">
+            答えが自然数にならないことがある、使ってはいけない計算マシーン　→　反例を示す
+          </div>
+        </div>
       </div>
     </div>
   )
