@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import Image from "next/image"
 
 import { create, all, type MathType, isFraction } from "mathjs"
-import StageNaturalNumbersCheckDialog from "./StageNaturalNumbersCheckDialog"
+import CheckDialog from "./CheckDialog"
 
 const calcOperators = ["+", "-", "×", "÷"] as const
 
@@ -24,10 +24,15 @@ const calcName = {
   "÷": "除法",
 }
 
-const StageNaturalNumbers = (props: {
+const Index = (props: {
+  password: string
+  setOfNumberDescription: string
+  backStep: string
+  nextStep: string
   setStep: React.Dispatch<React.SetStateAction<string>>
 }) => {
-  const { setStep } = props
+  const { password, setOfNumberDescription, backStep, nextStep, setStep } =
+    props
 
   const [inputValue1, setInputValue1] = useState("")
   const [inputValue2, setInputValue2] = useState("")
@@ -41,7 +46,7 @@ const StageNaturalNumbers = (props: {
 
   const math = create(all)
 
-  const handleCalc = useCallback(() => {
+  const handleCalc = () => {
     try {
       const value1 = math.fraction(inputValue1)
       const value2 = math.fraction(inputValue2)
@@ -76,7 +81,7 @@ const StageNaturalNumbers = (props: {
     } catch (error) {
       setInputValue3("ムリで〜す")
     }
-  }, [inputValue1, inputValue2, calcOperator, math])
+  }
 
   useEffect(() => {
     const savedCount = localStorage.getItem("count")
@@ -99,12 +104,14 @@ const StageNaturalNumbers = (props: {
   return (
     <div className="flex size-full flex-col items-center justify-center rounded-2xl bg-sky-100 px-4 py-8">
       {showCheckDialog && (
-        <StageNaturalNumbersCheckDialog
+        <CheckDialog
+          password={password}
+          nextStep={nextStep}
           setShowCheckDialog={setShowCheckDialog}
         />
       )}
       <div className="text-lg text-black">
-        自然数の王国で使える計算マシーンはどれだろう
+        {setOfNumberDescription}の王国で使える計算マシーンはどれだろう
       </div>
       <div className="m-4 flex flex-col items-center justify-center rounded-md bg-sky-200 p-8 shadow-md">
         <div className="mb-6 text-slate-600">
@@ -177,16 +184,18 @@ const StageNaturalNumbers = (props: {
       <div className="flex items-center">
         <div
           className="mx-8 cursor-pointer select-none rounded-2xl bg-white/95 px-8 py-2 text-black transition-colors duration-200 ease-in-out hover:bg-white"
-          onClick={() => setStep("Natural4")}
+          onClick={() => setStep(backStep)}
         >
           戻る
         </div>
         <div className="flex flex-col">
           <div className="py-2 text-xs text-slate-500">
-            答えが必ず自然数になる、使って良い計算マシーン　→　理由を説明する
+            答えが必ず{setOfNumberDescription}
+            になる、使って良い計算マシーン　→　理由を説明する
           </div>
           <div className="py-2 text-xs text-slate-500">
-            答えが自然数にならないことがある、使ってはいけない計算マシーン　→　反例を示す
+            答えが{setOfNumberDescription}
+            にならないことがある、使ってはいけない計算マシーン　→　反例を示す
           </div>
         </div>
         <div
@@ -202,4 +211,4 @@ const StageNaturalNumbers = (props: {
   )
 }
 
-export default StageNaturalNumbers
+export default Index

@@ -11,7 +11,7 @@ const description = [
   "王様はどの計算マシーンを導入すればよいのか、決めかねていました。",
 ]
 
-const Natural1 = () => {
+const Natural2 = () => {
   return (
     <div className=" animate-floatInFromTop">
       {description.map((story, index) => (
@@ -23,4 +23,4 @@ const Natural1 = () => {
   )
 }
 
-export default Natural1
+export default Natural2

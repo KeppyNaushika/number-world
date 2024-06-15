@@ -7,7 +7,7 @@ const description = [
   "４つの中から選んでくれたまえ」",
 ]
 
-const Natural2 = () => {
+const Natural3 = () => {
   return (
     <div className=" animate-floatInFromTop">
       {description.map((story, index) => (
@@ -19,4 +19,4 @@ const Natural2 = () => {
   )
 }
 
-export default Natural2
+export default Natural3

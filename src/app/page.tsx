@@ -5,7 +5,11 @@ import { MdSettings } from "react-icons/md"
 
 import AspectRatioBox from "./components/AspectRatioBox"
 
-import Intro0 from "./stories/intro/intro0"
+import Settings from "./components/Settings"
+
+import CalculatorStage from "./stories/CalculatorStage"
+
+import Intro0 from "./stories/Intro/intro0"
 import Natural0 from "./stories/NaturalNumbers/Natural0"
 import Natural1 from "./stories/NaturalNumbers/Natural1"
 import Natural2 from "./stories/NaturalNumbers/Natural2"
@@ -13,8 +17,19 @@ import Natural3 from "./stories/NaturalNumbers/Natural3"
 import Natural4 from "./stories/NaturalNumbers/Natural4"
 import Natural5 from "./stories/NaturalNumbers/Natural5"
 
-import StageNaturalNumbers from "./stories/NaturalNumbers/StageNaturalNumbers"
-import Settings from "./components/Settings"
+import Integer0 from "./stories/IntegerNumbers/Integer0"
+import Integer1 from "./stories/IntegerNumbers/Integer1"
+import Integer2 from "./stories/IntegerNumbers/Integer2"
+
+import Rational0 from "./stories/RationalNumbers/Rational0"
+import Rational1 from "./stories/RationalNumbers/Rational1"
+import Rational2 from "./stories/RationalNumbers/Rational2"
+
+import Epilogue0 from "./stories/Epilogue/Epilogue0"
+import Epilogue1 from "./stories/Epilogue/Epilogue1"
+import Epilogue2 from "./stories/Epilogue/Epilogue3"
+import Epilogue3 from "./stories/Epilogue/Epilogue2"
+import Epilogue4 from "./stories/Epilogue/Epilogue4"
 
 interface Story {
   step: string
@@ -62,11 +77,79 @@ const stories: Story[] = [
   {
     step: "Natural5",
     backStep: "Natural4",
-    nextStep: "stageNaturalNumbers",
+    nextStep: "StageNaturalNumbers",
     component: <Natural5 />,
   },
   {
-    step: "stageNaturalNumbers",
+    step: "StageNaturalNumbers",
+  },
+  {
+    step: "Integer0",
+    nextStep: "Integer1",
+    component: <Integer0 />,
+  },
+  {
+    step: "Integer1",
+    backStep: "Integer0",
+    nextStep: "Integer2",
+    component: <Integer1 />,
+  },
+  {
+    step: "Integer2",
+    backStep: "Integer1",
+    nextStep: "StageIntegerNumbers",
+    component: <Integer2 />,
+  },
+  {
+    step: "StageIntegerNumbers",
+  },
+  {
+    step: "Rational0",
+    nextStep: "Rational1",
+    component: <Rational0 />,
+  },
+  {
+    step: "Rational1",
+    backStep: "Rational0",
+    nextStep: "Rational2",
+    component: <Rational1 />,
+  },
+  {
+    step: "Rational2",
+    backStep: "Rational1",
+    nextStep: "StageRationalNumbers",
+    component: <Rational2 />,
+  },
+  {
+    step: "StageRationalNumbers",
+  },
+  {
+    step: "Epilogue0",
+    nextStep: "Epilogue1",
+    component: <Epilogue0 />,
+  },
+  {
+    step: "Epilogue1",
+    backStep: "Epilogue0",
+    nextStep: "Epilogue2",
+    component: <Epilogue1 />,
+  },
+  {
+    step: "Epilogue2",
+    backStep: "Epilogue1",
+    nextStep: "Epilogue3",
+    component: <Epilogue2 />,
+  },
+  {
+    step: "Epilogue3",
+    backStep: "Epilogue2",
+    nextStep: "Epilogue4",
+    component: <Epilogue3 />,
+  },
+  {
+    step: "Epilogue4",
+    backStep: "Epilogue3",
+    component: <Epilogue4 />,
   },
 ]
 
@@ -136,7 +219,8 @@ export default function Home() {
           {(step.startsWith("intro") ||
             step.startsWith("Natural") ||
             step.startsWith("Integer") ||
-            step.startsWith("Rational")) && (
+            step.startsWith("Rational") ||
+            step.startsWith("Epilogue")) && (
             <>
               <div className="flex h-1/6 justify-around"></div>
               <div className="mx-12 flex h-2/3 flex-col content-center justify-center rounded-2xl bg-white/95">
@@ -180,8 +264,32 @@ export default function Home() {
               </div>
             </>
           )}
-          {step === "stageNaturalNumbers" && (
-            <StageNaturalNumbers setStep={setStep} />
+          {step === "StageNaturalNumbers" && (
+            <CalculatorStage
+              password={"NATURAL NUMBERS"}
+              setOfNumberDescription={"自然数"}
+              backStep="Natural4"
+              nextStep="Integer0"
+              setStep={setStep}
+            />
+          )}
+          {step === "StageIntegerNumbers" && (
+            <CalculatorStage
+              password={"INTEGER NUMBERS"}
+              setOfNumberDescription={"整数"}
+              backStep="Integer1"
+              nextStep="Rational0"
+              setStep={setStep}
+            />
+          )}
+          {step === "StageRationalNumbers" && (
+            <CalculatorStage
+              password={"RATIONAL NUMBERS"}
+              setOfNumberDescription={"数"}
+              backStep="Rational1"
+              nextStep="Epilogue0"
+              setStep={setStep}
+            />
           )}
         </div>
       </div>

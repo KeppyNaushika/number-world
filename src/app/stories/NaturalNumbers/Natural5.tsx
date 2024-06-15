@@ -9,7 +9,7 @@ const description = [
   "全員が説明できるようにしておこう。",
 ]
 
-const Natural2 = () => {
+const Natural5 = () => {
   return (
     <div className=" animate-floatInFromTop">
       <div className="pb-4 text-center text-lg text-black">ルール 2</div>
@@ -23,4 +23,4 @@ const Natural2 = () => {
   )
 }
 
-export default Natural2
+export default Natural5
