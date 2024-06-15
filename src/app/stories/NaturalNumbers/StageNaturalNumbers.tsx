@@ -157,12 +157,12 @@ const StageNaturalNumbers = () => {
         </div>
         <button
           className=" bg-slate-700 shadow-md w-60 py-2 mx-2 text-center rounded-md text-white flex flex-col items-center justify-center hover:opacity-80 transition-opacity duration-200 ease-in-out cursor-pointer"
-          style={{ opacity: count < 1 ? 0.5 : undefined }}
+          style={{ opacity: (count ?? 20) < 1 ? 0.5 : undefined }}
           onClick={() => {
             setShowAnswer(true)
-            setCount((prev) => prev - 1)
+            setCount((prev) => (prev ?? 20) - 1)
           }}
-          disabled={count < 1}
+          disabled={(count ?? 20) < 1}
         >
           計算する
         </button>
