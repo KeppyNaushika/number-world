@@ -204,10 +204,10 @@ const Index = (props: {
             「5³」を「5^3」、「2¹²」を「2^12」と表します。
           </div>
           <div className="py-2 text-xs text-slate-500">
-            指数が自然数でないとき、累乗（るいじょう）ではなく冪乗（べきじょう）といいます。
+            累乗（るいじょう）のことを冪乗（べきじょう）ということがあります。
           </div>
         </div>
-        <div className="mx-8 cursor-pointer select-none rounded-2xl bg-white/0 px-8 py-2 text-black transition-colors duration-200 ease-in-out hover:bg-white">
+        <div className="mx-8 select-none rounded-2xl bg-white/0 px-8 py-2 text-black">
           　
         </div>
       </div>
