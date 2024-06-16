@@ -31,6 +31,8 @@ import Epilogue2 from "./stories/Epilogue/Epilogue2"
 import Epilogue3 from "./stories/Epilogue/Epilogue3"
 import Epilogue4 from "./stories/Epilogue/Epilogue4"
 
+import AdvancedCalculator from "./stories/AdvancedCalculator"
+
 interface Story {
   step: string
   nextStep?: string
@@ -149,7 +151,11 @@ const stories: Story[] = [
   {
     step: "Epilogue4",
     backStep: "Epilogue3",
+    nextStep: "AdvancedCalculator",
     component: <Epilogue4 />,
+  },
+  {
+    step: "AdvancedCalculator",
   },
 ]
 
@@ -290,6 +296,9 @@ export default function Home() {
               nextStep="Epilogue0"
               setStep={setStep}
             />
+          )}
+          {step === "AdvancedCalculator" && (
+            <AdvancedCalculator backStep="Epilogue0" setStep={setStep} />
           )}
         </div>
       </div>
