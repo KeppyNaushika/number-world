@@ -33,6 +33,7 @@ import Epilogue4 from "./stories/Epilogue/Epilogue4"
 
 import AdvancedCalculator from "./stories/AdvancedCalculator"
 
+
 interface Story {
   step: string
   nextStep?: string
@@ -272,7 +273,7 @@ export default function Home() {
           )}
           {step === "StageNaturalNumbers" && (
             <CalculatorStage
-              password={"NATURAL NUMBERS"}
+              password={"NATURAL"}
               setOfNumberDescription={"自然数"}
               backStep="Natural4"
               nextStep="Integer0"
@@ -281,7 +282,7 @@ export default function Home() {
           )}
           {step === "StageIntegerNumbers" && (
             <CalculatorStage
-              password={"INTEGER NUMBERS"}
+              password={"INTEGER"}
               setOfNumberDescription={"整数"}
               backStep="Integer1"
               nextStep="Rational0"
@@ -290,7 +291,7 @@ export default function Home() {
           )}
           {step === "StageRationalNumbers" && (
             <CalculatorStage
-              password={"RATIONAL NUMBERS"}
+              password={"RATIONAL"}
               setOfNumberDescription={"数"}
               backStep="Rational1"
               nextStep="Epilogue0"

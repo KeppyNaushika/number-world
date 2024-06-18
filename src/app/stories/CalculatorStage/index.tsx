@@ -86,7 +86,7 @@ const Index = (props: {
   useEffect(() => {
     const savedCount = localStorage.getItem("count")
     if (savedCount === null) {
-      setCount(20)
+      setCount(40)
     } else {
       setCount(Number(savedCount))
     }
@@ -170,13 +170,13 @@ const Index = (props: {
         </div>
         <button
           className=" mx-2 flex w-60 cursor-pointer flex-col items-center justify-center rounded-md bg-slate-700 py-2 text-center text-white shadow-md transition-opacity duration-200 ease-in-out hover:opacity-80"
-          style={{ opacity: (count ?? 20) < 1 ? 0.5 : undefined }}
+          style={{ opacity: (count ?? 40) < 1 ? 0.5 : undefined }}
           onClick={() => {
             handleCalc()
             setShowAnswer(true)
-            setCount((prev) => (prev ?? 20) - 1)
+            setCount((prev) => (prev ?? 40) - 1)
           }}
-          disabled={(count ?? 20) < 1}
+          disabled={(count ?? 40) < 1}
         >
           計算する
         </button>

@@ -6,17 +6,18 @@
 
 左上の歯車の設定： `password`
 
-自然数の王国の突破： `NATURAL NUMBERS`
+自然数の王国の突破： `NATURAL`
 
-整数の王国の突破： `INTEGER NUMBERS`
+整数の王国の突破： `INTEGER`
 
-（有理）数の王国の突破： `RATIONAL NUMBERS`
+（有理）数の王国の突破： `RATIONAL`
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
+npm run i
 npm run dev
 ```
 
